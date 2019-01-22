@@ -1,0 +1,13 @@
+extends templates/base
+block content
+    if principal
+        h3= principal.name + ', you can create a chat:'
+    else
+        h3 Anonim, you can create a chat:
+    form(action='/create-chat' method='post')
+        input(type='text' name='name' required=true)
+        input(type='submit')
+    ul
+        each chat in chats
+            li
+                a(href='/conversation/' + chat._id)= chat.name
